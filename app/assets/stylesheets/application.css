@@ -13,3 +13,17 @@
  *= require_tree .
  *= require_self
  */
+
+body {
+  background-color: #44a0dd;
+}
+
+h1 {
+  font-family: Impact;
+  font-size: 3em;
+}
+
+label {
+  font-family: Impact;
+  font-size: 1.5em;
+}
