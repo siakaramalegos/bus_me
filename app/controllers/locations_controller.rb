@@ -19,6 +19,7 @@ class LocationsController < ApplicationController
 
     @nearby_buses = []
     # Check that geocoder found a valid address (this coordinate is default center of Atlanta)
+    # TODO:  Check against array of geocodes for all cities when fake address entered.
     if @location.latitude == 33.7489954 && @location.longitude == -84.3879824
       @oops = true
     else
