@@ -17,12 +17,17 @@ class LocationsController < ApplicationController
     # Use a helper method to parse the data into array of bus hashes
     @buses = fetch_api_data(source)
 
-    # Loop through all buses to find those that are nearby
     @nearby_buses = []
-    @buses.each do |bus|
-      if is_nearby(@location.latitude, @location.longitude,
-        bus['LATITUDE'].to_f, bus['LONGITUDE'].to_f)
-        @nearby_buses.push(bus)
+    # Check that geocoder found a valid address (this coordinate is default center of Atlanta)
+    if @location.latitude == 33.7489954 && @location.longitude == -84.3879824
+      @oops = true
+    else
+      # Loop through all buses to find those that are nearby
+      @buses.each do |bus|
+        if is_nearby(@location.latitude, @location.longitude,
+          bus['LATITUDE'].to_f, bus['LONGITUDE'].to_f)
+          @nearby_buses.push(bus)
+        end
       end
     end
 
