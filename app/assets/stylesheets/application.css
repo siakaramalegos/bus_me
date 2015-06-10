@@ -15,22 +15,70 @@
  */
 
 body {
-  background-color: #44a0dd;
+  background-color: #7dcded;
+}
+
+h1, h2, h3 {
+  font-family: Helvetica, sans-serif;
 }
 
 h1 {
-  font-family: Impact;
   font-size: 3em;
 }
 
 label {
-  font-family: Impact;
+  font-family: Helvetica, sans-serif;
   font-size: 1.5em;
 }
 
 div#map-canvas {
-  height: 500px;
-  width: 500px;
-  margin: 0;
+  height: 300px;
+  width: 100%;
+  margin: 0 0 2em 0;
   padding: 0;
 }
+
+/* === Anne's Additional Styles === */
+.container-fluid {
+  max-width: 500px;
+  background-color: white;
+  border-radius: 20px;
+  box-shadow: 3px 3px 15px black;
+  padding: 3%;
+}
+
+.btn-success {
+  background-color: #beda72;
+  border: 0;
+}
+
+.logo {
+  text-align: center;
+
+}
+
+.locationbox {
+  background-color: #beda72;
+  padding: 10px 5px 2px 5px;
+  text-align: center;
+  position: relative;
+  color: white;
+  border-radius: 17px 17px 0px 0px;
+}
+
+.fa-bus {
+  color: #2cade0;
+}
+.routenumber {
+  font-weight: bold;
+  font-size: 150%;
+  margin-bottom: 0.25em;
+ }
+
+ .vehiclenumber {
+  font-size: 85%;
+  color: gray;
+  margin-top: 0px;
+  line-height: 120%;
+ }
+

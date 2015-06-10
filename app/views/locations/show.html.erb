@@ -1,30 +1,31 @@
-<p id="notice"><%= notice %></p>
-<h1>Bus Me!</h1>
-
-image-url("dog-tron3.jpg")
-
-<h2>You are currently standing at...</h2>
-<% if @oops %>
-  <p>...oops, we didn't quite catch that.  Make sure you enter a valid street address or corner.</p>
-<% else %>
-  <p><%= @location.my_location %></p>
-
-  <h2>The closest buses are...</h2>
+    <div class="locationbox">
+      <% if @oops %>
+        <p>...oops, we didn't quite catch that.  Make sure you enter a valid street address or corner.</p>
+      <% else %>
+      <p>Showing Results for:</p> 
+       <h4><%= @location.my_location %></h4>
+    </div><!--locationbox-->
 
   <div id="map-canvas"></div>
 
   <% if @bus_count == 0 %>
     <p>...not really that close.  Time to walk, bike, taxi, or Uber.</p>
+  
   <% else %>
+  <table class="table">
     <% @nearby_buses.each do |bus| %>
-      <p>
-        <strong>Route:</strong> <%= bus["ROUTE"] %><br>
-        <strong>Bus Number:</strong> <%= bus["VEHICLE"] %><br>
-        <strong>Next Stop:</strong> <%= bus["TIMEPOINT"] %><br>
-      </p>
-    <% end %>
-  <% end %>
-<% end %>
+      <tr>
+        <td><p class="fa fa-bus fa-2x"></p></td>
+        <td><p class="routenumber"><%= bus["ROUTE"] %>
+        <p class="vehiclenumber">Vehicle #<%= bus["VEHICLE"] %></p></td>
+        <td><p>Approaching the <%= bus["TIMEPOINT"] %> stop, heading <%= bus["DIRECTION"] %></p></td> 
+       </tr>
+    <% end %> <!--@nearby_buses.each -->
+    </table>
+  <% end %> <!-- if @bus_count-->
+<% end %><!-- if @oops-->
+
+
 
 <center><%= button_to 'New Search', root_url, class: "btn btn-success btn-md", :method => :get %></center>
 
@@ -41,7 +42,7 @@ image-url("dog-tron3.jpg")
 
     var map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
 
-    var personIcon = "<%= image_path 'man_icon.png' %>";
+    var personIcon = "<%= image_path 'man_icon2.png' %>";
 
     var myMarker = new google.maps.Marker({
       position: myLatLng,

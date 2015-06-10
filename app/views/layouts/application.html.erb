@@ -17,16 +17,24 @@
 </head>
 <body>
 
+<div class="row">
+    <div class="logo">
+    <%= image_tag 'busmelogo.png' %>
+    </div><!--logo-->
+
+  </div> <!--row-->
 
 <div class="container-fluid">
-  <div class="row">
-    <div class="col-xs-12">
 
-      <%= yield %>
-      
-    </div>
-  </div>
-</div>
+
+    <div class="row">
+      <div class="col-xs-12">
+
+        <%= yield %>
+
+      </div><!--col-xs-12-->
+    </div> <!--row-->
+</div><!--container-fluid-->
 
 </body>
 </html>
