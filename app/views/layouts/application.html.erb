@@ -8,16 +8,33 @@
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
+
+  <!-- Bootstrap -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+
+  <!-- Font Awesome... Beacause it's Awesome -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
 </head>
 <body>
 
+<div class="row">
+    <div class="logo">
+    <%= image_tag 'busmelogo.png' %>
+    </div><!--logo-->
+
+  </div> <!--row-->
+
 <div class="container-fluid">
-  <div class="row">
-    <div class="col-xs-12">
-      <%= yield %>
-    </div>
-  </div>
-</div>
+
+
+    <div class="row">
+      <div class="col-xs-12">
+
+        <%= yield %>
+
+      </div><!--col-xs-12-->
+    </div> <!--row-->
+</div><!--container-fluid-->
 
 </body>
 </html>

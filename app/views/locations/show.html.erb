@@ -1,30 +1,33 @@
-<p id="notice"><%= notice %></p>
-<h1>Bus Me!</h1>
-
-<h2>You are currently standing at...</h2>
-<% if @oops %>
-  <p>...oops, we didn't quite catch that.  Make sure you enter a valid street address or corner.</p>
-<% else %>
-  <p><%= @location.my_location %></p>
-
-  <h2>The closest buses are...</h2>
+    <div class="locationbox">
+      <% if @oops %>
+        <p>...oops, we didn't quite catch that.  Make sure you enter a valid street address or corner.</p>
+      <% else %>
+      <p>Showing Results for:</p> 
+       <h4><%= @location.my_location %></h4>
+    </div><!--locationbox-->
 
   <div id="map-canvas"></div>
 
   <% if @bus_count == 0 %>
     <p>...not really that close.  Time to walk, bike, taxi, or Uber.</p>
+  
   <% else %>
+  <table class="table">
     <% @nearby_buses.each do |bus| %>
-      <p>
-        <strong>Route:</strong> <%= bus["ROUTE"] %><br>
-        <strong>Bus Number:</strong> <%= bus["VEHICLE"] %><br>
-        <strong>Next Stop:</strong> <%= bus["TIMEPOINT"] %><br>
-      </p>
-    <% end %>
-  <% end %>
-<% end %>
+      <tr>
+        <td><p class="fa fa-bus fa-2x"></p></td>
+        <td><p class="routenumber"><%= bus["ROUTE"] %>
+        <p class="vehiclenumber">Vehicle #<%= bus["VEHICLE"] %></p></td>
+        <td><p>Approaching the <%= bus["TIMEPOINT"] %> stop, heading <%= bus["DIRECTION"] %></p></td> 
+       </tr>
+    <% end %> <!--@nearby_buses.each -->
+    </table>
+  <% end %> <!-- if @bus_count-->
+<% end %><!-- if @oops-->
 
-<%= link_to 'New Search', edit_location_path(@location), class: "btn btn-success" %>
+
+
+<center><%= button_to 'New Search', root_url, class: "btn btn-success btn-md", :method => :get %></center>
 
 <script type="text/javascript">
   function initialize() {
@@ -39,7 +42,7 @@
 
     var map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
 
-    var personIcon = "<%= image_path 'man_icon.png' %>";
+    var personIcon = "<%= image_path 'man_icon2.png' %>";
 
     var myMarker = new google.maps.Marker({
       position: myLatLng,
@@ -52,14 +55,18 @@
     nearbyBuses.forEach(function (element){
       var busLatLng = new google.maps.LatLng(element['LATITUDE'], element['LONGITUDE']);
 
+      var busIcon = "<%= image_path 'bus_icon.png' %>";
+
       var busMarker = new google.maps.Marker({
         position: busLatLng,
         map: map,
         animation: google.maps.Animation.DROP,
-        title: element['VEHICLE']
+        title: element['VEHICLE'],
+        icon: busIcon
       });
 
-      var contentString ='<div class="content"><h2>Route '+ element['ROUTE'] + ' ' + element['DIRECTION'] + '</h2><p>Next stop: ' + element['TIMEPOINT'] + '</p></div>';
+      var contentString = 
+        '<div class="content"><h4><i class="fa fa-bus" style="font-size: 90%;"></i> ' + element['ROUTE'] + ' ' + element['DIRECTION'] + '<span style="font-size: 60%; color: gray; font-weight: normal;"> (Vehicle #' + element['VEHICLE']+ ')</span></h4><p>Next stop: ' + element['TIMEPOINT'] + '</p> </div>'; 
 
       var infowindow = new google.maps.InfoWindow({
         content: contentString
