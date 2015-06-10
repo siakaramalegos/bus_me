@@ -52,11 +52,14 @@
     nearbyBuses.forEach(function (element){
       var busLatLng = new google.maps.LatLng(element['LATITUDE'], element['LONGITUDE']);
 
+      var busIcon = "<%= image_path 'bus_icon.png' %>";
+
       var busMarker = new google.maps.Marker({
         position: busLatLng,
         map: map,
         animation: google.maps.Animation.DROP,
-        title: element['VEHICLE']
+        title: element['VEHICLE'],
+        icon: busIcon
       });
 
       var contentString ='<div class="content"><h2>Route '+ element['ROUTE'] + ' ' + element['DIRECTION'] + '</h2><p>Next stop: ' + element['TIMEPOINT'] + '</p></div>';
